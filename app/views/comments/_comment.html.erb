@@ -10,7 +10,10 @@
 </p>
  
 <p>
+ <% if signed_in? %> 
   <%= link_to 'Destroy Comment', [comment.article, comment],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
+ <% end %>               
 </p>
+

@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+    before_action :authorize_action, only: [:edit, :update, :destroy]
 
     def index
         @articles = Article.all
@@ -14,12 +15,13 @@ class ArticlesController < ApplicationController
     end
     
     def edit
+        #  debugger
         @article = Article.find(params[:id])
+        
     end
 
     def create
         @article = Article.new(article_params)
-    
             if @article.save
                 redirect_to @article
             else
@@ -46,8 +48,16 @@ class ArticlesController < ApplicationController
 
     private
         def article_params
-            params.require(:article).permit(:title, :text)
+            params.require(:article).permit(:title, :text).merge(user_id: current_user.id)
         end
-    
-    
+
+        def authorize_action
+            # debugger
+            unless current_user === Article.find(params[:id])&.user
+                redirect_to articles_path 
+            end
+            
+        end
 end
+
+
