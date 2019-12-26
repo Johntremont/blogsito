@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-    before_action :authorize_action, only: [:edit, :update, :destroy]
+    before_action :authorize_action, only: [:edit]
 
     def index
         @articles = Article.all
@@ -59,5 +59,6 @@ class ArticlesController < ApplicationController
             
         end
 end
+
 
 
