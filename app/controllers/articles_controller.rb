@@ -53,7 +53,10 @@ class ArticlesController < ApplicationController
 
         def authorize_action
             # debugger
-            render html: "<strong>Not Found</strong>".html_safe unless current_user == Article.find(params[:id]).user
+            unless current_user === Article.find(params[:id])&.user
+                redirect_to articles_path 
+            end
+            
         end
 end
 
