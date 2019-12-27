@@ -1,7 +1,7 @@
 
 <p>
   <strong>Commenter:</strong>
-  <%= comment.commenter %>
+  <%= comment.user.email %>
 </p>
  
 <p>
@@ -10,10 +10,10 @@
 </p>
  
 <p>
- <% if signed_in? && current_user == Article.find(params[:id]).user %> 
+ <% if signed_in? && current_user == comment.user %> 
   <%= link_to 'Destroy Comment', [comment.article, comment],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
+          method: :delete,
+          data: { confirm: 'Are you sure?' } %>
  <% end %>               
 </p>
 
