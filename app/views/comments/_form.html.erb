@@ -2,7 +2,7 @@
     <%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
         <p>
             <%= form.label :commenter %><br>
-            <%= form.text_field :commenter %>
+            <%= current_user.email %>
         </p>
         <p>
             <%= form.label :body %><br>
@@ -13,4 +13,3 @@
         </p>
     <% end %>
 <% end %> 
-
