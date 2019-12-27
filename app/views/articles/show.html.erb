@@ -16,7 +16,7 @@
     <%= render 'comments/form' %>
 <% end %> 
 
-<% if current_user = Article.find(params[:id]).user %> 
+<% if current_user == Article.find(params[:id]).user %> 
     <%= link_to 'Edit', edit_article_path(@article) %> |
 <% end %>
 

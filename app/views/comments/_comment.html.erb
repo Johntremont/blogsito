@@ -10,7 +10,7 @@
 </p>
  
 <p>
- <% if signed_in? %> 
+ <% if signed_in? && current_user == Article.find(params[:id]).user %> 
   <%= link_to 'Destroy Comment', [comment.article, comment],
                method: :delete,
                data: { confirm: 'Are you sure?' } %>
