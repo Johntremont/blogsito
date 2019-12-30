@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
     def authorize_action
         # debugger
         unless current_user.present? && current_user.id == Article.find(params[:id])&.user&.id
-            redirect_to articles_path 
+          redirect_to '/not_found' 
         end 
     end
 
