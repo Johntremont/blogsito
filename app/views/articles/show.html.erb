@@ -1,18 +1,22 @@
 <p>
-  <strong>Title:</strong>
+  <strong>Autor:</strong>
+  <%= @article.user.email %>
+</p>
+<p>
+  <strong>Título:</strong>
   <%= @article.title %>
 </p>
  
 <p>
-  <strong>Text:</strong>
+  <strong>Contenido</strong>
   <%= @article.text %>
 </p>
  
-<h2>Comments</h2>
+<h2>Comentarios</h2>
 <%= render @article.comments %>
 
 <% if signed_in? %>  
-    <h2>Add a comment:</h2>
+    <h2>Comentar</h2>
     <%= render 'comments/form' %>
 <% end %> 
 
