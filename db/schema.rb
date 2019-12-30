@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< Updated upstream
 ActiveRecord::Schema.define(version: 2019_12_27_183148) do
+=======
+ActiveRecord::Schema.define(version: 2019_12_26_171036) do
+>>>>>>> Stashed changes
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
