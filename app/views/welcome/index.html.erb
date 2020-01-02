@@ -1,10 +1,8 @@
+<h2>Register</h2>
 
-<h1>Hello, Rails!</h1>
 
-
-<%= link_to 'My Blog', controller: 'articles' %>
 <% if signed_in? %> 
-    <%= link_to :logout, destroy_user_session_path, :method => :delete  %>
-<% else %>
-    <%= link_to :login, new_user_session_path %>
+
+<%= render 'layouts/menu' %>
+
 <% end %> 

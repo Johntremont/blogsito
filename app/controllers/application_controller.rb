@@ -1,3 +1,4 @@
 class ApplicationController < ActionController::Base
-  config.exceptions_app = self.routes
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
 end

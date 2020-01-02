@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< Updated upstream
-ActiveRecord::Schema.define(version: 2019_12_27_183148) do
-=======
-ActiveRecord::Schema.define(version: 2019_12_26_171036) do
->>>>>>> Stashed changes
+ActiveRecord::Schema.define(version: 2019_12_30_181733) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
@@ -61,6 +57,8 @@ ActiveRecord::Schema.define(version: 2019_12_26_171036) do
     t.integer "comment_id"
     t.string "name"
     t.string "last_name"
+    t.datetime "date_of_birth"
+    t.boolean "is_female", default: false
     t.index ["comment_id"], name: "index_users_on_comment_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
