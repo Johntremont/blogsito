@@ -1,6 +1,6 @@
 <p>
   <strong>Autor:</strong>
-  <%= @article.user.email %>
+  <%= "#{@article.user.name} #{@article.user.last_name}" %>
 </p>
 <p>
   <strong>Título:</strong>
@@ -12,6 +12,11 @@
   <%= @article.text %>
 </p>
  
+<p>
+  <strong></strong>
+  <%= @article.created_at %>
+</p>
+
 <h2>Comentarios</h2>
 <%= render @article.comments %>
 

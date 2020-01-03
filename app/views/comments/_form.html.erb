@@ -1,8 +1,8 @@
 <% if signed_in? %>   
     <%= form_with(model: [ @article, @article.comments.build ], local: true) do |form| %>
         <p>
-            <%= form.label :commenter %><br>
-            <%= current_user.email %>
+            <strong><%= form.label :Usuario %></strong><br>
+            <%= "#{current_user.name} #{current_user.last_name}" %>
         </p>
         <p>
             <%= form.label :body %><br>

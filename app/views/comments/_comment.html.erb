@@ -8,6 +8,11 @@
   <strong>Comentario:</strong>
   <%= comment.body %>
 </p>
+
+<p>
+  <strong></strong>
+  <%= comment.created_at %>
+</p>
  
 <p>
  <% if signed_in? && current_user == comment.user %> 
