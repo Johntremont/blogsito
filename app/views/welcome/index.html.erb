@@ -4,7 +4,7 @@
 
 <div class="collapse navbar-collapse" id="navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Mi Blogsito', controller: 'articles' %></li>
+        <li><%= link_to 'Todos los Artículos', controller: 'articles' %></li>
         <% if current_user %>
             <li><%= link_to 'Editar Perfil', edit_user_registration_path %></li>
             <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
