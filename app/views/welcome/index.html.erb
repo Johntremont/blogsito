@@ -1,8 +1,15 @@
-<h2>Register</h2>
 
+<h2>Bienvenido</h2>
+  <%= link_to current_user.email, controller: 'profile' %>
 
-<% if signed_in? %> 
-
-<%= render 'layouts/menu' %>
-
-<% end %> 
+<div class="collapse navbar-collapse" id="navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to 'Todos los Artículos', controller: 'articles' %></li>
+        <% if current_user %>
+            <li><%= link_to 'Editar Perfil', edit_user_registration_path %></li>
+            <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
+        <% else %>
+            <li><%= link_to 'Iniciar Sesión', new_user_session_path %></li>
+        <% end %>
+    </ul>
+</div>
