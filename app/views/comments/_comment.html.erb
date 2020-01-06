@@ -1,12 +1,17 @@
 
 <p>
   <strong>Usuario:</strong>
-  <%= comment.user.email %>
+  <%= "#{@article.user.name} #{@article.user.last_name}" %>
 </p>
  
 <p>
   <strong>Comentario:</strong>
   <%= comment.body %>
+</p>
+
+<p>
+  <strong></strong>
+  <%= l comment.created_at, format: :euro %>
 </p>
  
 <p>

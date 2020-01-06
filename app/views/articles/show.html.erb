@@ -1,6 +1,6 @@
 <p>
   <strong>Autor:</strong>
-  <%= @article.user.email %>
+  <%= "#{@article.user.name} #{@article.user.last_name}" %>
 </p>
 <p>
   <strong>Título:</strong>
@@ -12,6 +12,20 @@
   <%= @article.text %>
 </p>
  
+<p>
+  <strong></strong>
+  <%= l @article.created_at, format: :euro %>
+</p>
+<% pre_like = @article.likes.find_by(user_id: current_user.id) %>
+<% if pre_like %>
+  <%= button_to 'Unlike', article_like_path(@article.id, pre_like.id), method: :delete %>
+<% else %>
+  <%= button_to 'Like', article_likes_path(@article), method: :post %>
+<% end %>
+<p>
+  <%= @article.likes.count %> <%= (@article.likes.count) == 1 ? 'Like' : 'Likes'%>
+</p>
+
 <h2>Comentarios</h2>
 <%= render @article.comments %>
 
