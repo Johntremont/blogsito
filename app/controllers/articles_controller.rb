@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authorize_action, only: [:edit]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:new, :edit, :index]
 
   def index
     @articles = Article.all.order(created_at: :desc)
@@ -18,7 +19,9 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+    debugger
     if @article.save
+        ArticleCategory.create(article_id: @article.id, category_id: params[:article][:category_id])
         redirect_to @article
     else
         render 'new'
@@ -55,6 +58,10 @@ class ArticlesController < ApplicationController
     def set_article 
       @article = Article.find(params[:id])
     end
+
+    def set_category
+      @categories = Category.all
+    end  
 end
 
 

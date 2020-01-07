@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_06_143425) do
+ActiveRecord::Schema.define(version: 2020_01_07_160825) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2020_01_06_143425) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "article_categories", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_article_categories_on_article_id"
+    t.index ["category_id"], name: "index_article_categories_on_category_id"
+  end
+
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
@@ -51,9 +60,17 @@ ActiveRecord::Schema.define(version: 2020_01_06_143425) do
     t.integer "user_id"
     t.integer "comment_id"
     t.integer "like_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["comment_id"], name: "index_articles_on_comment_id"
     t.index ["like_id"], name: "index_articles_on_like_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -122,6 +139,7 @@ ActiveRecord::Schema.define(version: 2020_01_06_143425) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "categories"
   add_foreign_key "articles", "comments"
   add_foreign_key "articles", "likes"
   add_foreign_key "articles", "users"

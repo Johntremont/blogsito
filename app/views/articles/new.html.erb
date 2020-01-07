@@ -1,6 +1,6 @@
 
 <h1>New Article</h1>
- 
+<%= collection_select(:article, :category_id, @categories, :id, :name, :prompt => "Seleccione Uno") %>
 <%= render 'form' %>
  
 <%= link_to 'Back', controller: 'profile' %>

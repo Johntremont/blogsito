@@ -1,5 +1,16 @@
 
 <h1>Artículos</h1>
+<ul class="list-group" id="menu-prin">
+  <li class="list-group-item animated fadeInLeft ret3">
+    <%= link_to "Inicio", root_path %>
+  </li>
+  <% i = 4 %>
+  <% @categories.each do |categoria| %>
+    <li class="ret<%= i+=1 %> list-group-item animated fadeInLeft">
+      <%= link_to categoria.name, categoria %>
+    </li>
+  <% end %>
+</ul>
 <% if signed_in? %>
  <%= link_to 'Mi Perfil', controller: 'profile' %>
 <% end %> <br> 
