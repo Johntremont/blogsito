@@ -43,15 +43,6 @@ ActiveRecord::Schema.define(version: 2020_01_07_160825) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "article_categories", force: :cascade do |t|
-    t.integer "article_id"
-    t.integer "category_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_id"], name: "index_article_categories_on_article_id"
-    t.index ["category_id"], name: "index_article_categories_on_category_id"
-  end
-
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.text "text"
@@ -65,6 +56,15 @@ ActiveRecord::Schema.define(version: 2020_01_07_160825) do
     t.index ["comment_id"], name: "index_articles_on_comment_id"
     t.index ["like_id"], name: "index_articles_on_like_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "articles_categories", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_articles_categories_on_article_id"
+    t.index ["category_id"], name: "index_articles_categories_on_category_id"
   end
 
   create_table "categories", force: :cascade do |t|

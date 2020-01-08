@@ -12,7 +12,8 @@
       </ul>
     </div>
   <% end %>
- 
+ <%= form.collection_select :category_ids, @categories, :id, :name, {}, multiple: true %>
+
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>

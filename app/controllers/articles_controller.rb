@@ -19,9 +19,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
-    debugger
+   
     if @article.save
-        ArticleCategory.create(article_id: @article.id, category_id: params[:article][:category_id])
         redirect_to @article
     else
         render 'new'
@@ -45,7 +44,7 @@ class ArticlesController < ApplicationController
   private
 
     def article_params
-      params.require(:article).permit(:title, :text).merge(user_id: current_user.id)
+      params.require(:article).permit(:title, :text, category_ids: []).merge(user_id: current_user.id)
     end
 
     def authorize_action
@@ -57,6 +56,10 @@ class ArticlesController < ApplicationController
 
     def set_article 
       @article = Article.find(params[:id])
+    end
+
+    def category_params
+      params.require(:category).permit(:name)
     end
 
     def set_category
