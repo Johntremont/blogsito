@@ -16,7 +16,7 @@
  
 <p>
  <% if signed_in? && current_user == comment.user %> 
-  <%= link_to 'Destroy Comment', [comment.article, comment],
+  <%= link_to 'Eliminar', [comment.article, comment],
           method: :delete,
           data: { confirm: 'Are you sure?' } %>
  <% end %>               

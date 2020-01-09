@@ -15,17 +15,17 @@
  <%= form.collection_select :category_ids, @categories, :id, :name, {}, multiple: true %>
 
   <p>
-    <%= form.label :title %><br>
+    <%= form.label :Título %><br>
     <%= form.text_field :title %>
   </p>
  
   <p>
-    <%= form.label :text %><br>
+    <%= form.label :Contenido %><br>
     <%= form.rich_text_area :text %>
   </p>
  
   <p>
-    <%= form.submit %>
+    <%= form.submit "Crear" %>
   </p>
  
 <% end %>
