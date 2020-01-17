@@ -1,30 +1,74 @@
 
-<div class="container text-center">  
-  <h2>Iniciar sesión</h2>
+<body class="p-3 mb-2 bg-success text-white">  
+  <div class="container text-left">
+   <div class="p-3 mb-2 bg-secondary text-white text-center  border border-primary"> 
+    <h2>Iniciar sesión</h2>
+   </div> 
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    
+      <div class="form-row">
+        <div class="form-group col-md-5">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email" %>
+        </div>
 
-    <div class="field">
-      <%= f.label :password %><br />
-      <%= f.password_field :password, autocomplete: "current-password" %>
-    </div>
+        <div class="form-group col-md-5">
+          <%= f.label :password %>
+          <%= f.password_field :password, class: 'form-control',  autocomplete: "current-password" %>
+        </div>
 
-    <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me %>
-        <%= f.label :recuerdame %>
-      </div>
+        <div class="actions col-md-2 mt-2">
+          <%= %><br>
+          <%= f.submit "Entrar", class: "btn btn-primary  text-justify" %>
+        </div>
+        <div class="form-group col-md-4"></div>  
+
+        <div class="form-group col-md-4"></div>
+      </div>  
+
+
+      <% if devise_mapping.rememberable? %>
+        <div class="btn btn-secondary btn-sm border border-primary">
+          <%= f.check_box :remember_me %>
+          <%= f.label :recuerdame %>
+        </div>
+      <% end %>
+    
     <% end %>
+  
+    <%= render "devise/shared/links" %>
+  </div> <br>
+  <%= link_to 'Volver a inicio', welcome_index_path %>
+ <div class="row">
 
-    <div class="actions">
-      <%= f.submit "Entrar" %>
+    <!-- Grid column -->
+    <div class="col-md-3 mb-4">
+      <div class="purple-gradient color-block mb-3 mx-auto rounded-circle z-depth-1"></div>
+      <h5 class="mb-0">purple-gradient</h5>
     </div>
-  <% end %>
+    <!-- Grid column -->
 
-  <%= render "devise/shared/links" %>
-</div> <br>
-<%= link_to 'Volver a inicio', welcome_index_path %>
+    <!-- Grid column -->
+    <div class="col-md-3 mb-4">
+      <div class="blue-gradient color-block mb-3 mx-auto rounded-circle z-depth-1"></div>
+      <h5 class="mb-0">blue-gradient</h5>
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-3 mb-4">
+      <div class="aqua-gradient color-block mb-3 mx-auto rounded-circle z-depth-1"></div>
+      <h5 class="mb-0">aqua-gradient</h5>
+    </div>
+    <!-- Grid column -->
+
+    <!-- Grid column -->
+    <div class="col-md-3 mb-4">
+      <div class="peach-gradient color-block mb-3 mx-auto rounded-circle z-depth-1"></div>
+      <h5 class="mb-0">peach-gradient</h5>
+    </div>
+    <!-- Grid column -->
+
+</div>
+</body>  

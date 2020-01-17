@@ -1,22 +1,28 @@
-<% unless current_user %>
-    <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand" href="/">Our Logo</a>
-    <form class="form-inline">
-        <%= link_to 'Iniciar Sesión', new_user_session_path, class: "btn btn-outline-primary" %>
-        <div style="padding-left: 10px;">
-        <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-success" %>
-        </div>
-    </form>
-    </nav>
-<% end %>    
-<h2>Bienvenido</h2>
-
-<div>
-    <ul>
-        <% if current_user %>
-        <li><%= link_to 'Todos los Artículos', controller: 'articles' %></li>
-            <li><%= link_to 'Editar Perfil', edit_user_registration_path, class: "btn" %></li>
-            <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
-        <% end %>
-    </ul>
-</div>
+<body class="p-3 mb-2 bg-success text-white">
+    <% unless current_user %>
+        <nav class="navbar navbar-light bg-light">
+          <a class="navbar-brand" href="/">Our Logo</a>
+          <form class="form-inline">
+              <%= link_to 'Iniciar Sesión', new_user_session_path, class: "btn btn-outline-primary" %>
+              <div style="padding-left: 10px;">
+                <%= link_to "Sign up", new_user_registration_path, class: "btn btn-outline-success" %>
+              </div>
+          </form>
+        </nav>
+    <% end %> 
+  <div class="container">
+    <div>
+    <div class="mb-2"></div>     
+      <h2 class="text-center, bg-warning">Bienvenido</h2>
+    <div>
+    <div>
+        <ul>
+            <% if current_user %>
+            <li><%= link_to 'Todos los Artículos', controller: 'articles' %></li>
+                <li><%= link_to 'Editar Perfil', edit_user_registration_path, class: "btn" %></li>
+                <li><%= link_to 'Cerrar Sesión', destroy_user_session_path, method: :delete %></li>
+            <% end %>
+        </ul>
+    </div>
+  </div>    
+</body>
