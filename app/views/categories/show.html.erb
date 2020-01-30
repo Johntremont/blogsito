@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @category.articles.count %>
+</p>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Usuario</th>
+    <th>Likes</th>
+    <th colspan="3"></th>
+  </tr>
+  <% @category.articles.each do |article|%>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= article.user.name_or_email %></td>
+      <td><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes' %></td>
+      <td><%= link_to 'Ver', article_path(article) %></td>
+    </tr>
+  <%end%>
+</table> <br>
+<%= link_to 'Editar', edit_category_path(@category) %> |
+<%= link_to 'Regresar', categories_path(@category) %>

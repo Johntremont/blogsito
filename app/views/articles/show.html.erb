@@ -35,7 +35,7 @@
 <% end %> 
 
 <% if current_user == Article.find(params[:id]).user %> 
-    <%= link_to 'Edit', edit_article_path(@article) %> |
+    <%= link_to 'Editar', edit_article_path(@article) %> |
 <% end %>
 
-    <%= link_to 'Back', controller: 'profile' %>
+    <%= link_to 'Volver', controller: 'profile' %>

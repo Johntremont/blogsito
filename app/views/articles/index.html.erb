@@ -1,30 +1,78 @@
+<div class="container">
+  <h1>Artículos</h1>
+  <% if signed_in? %>
+  <%= link_to 'Mi Perfil', controller: 'profile' %>
+  <% end %> <br> 
+  <div class="row justify-content-between">
+    <div class="col-3">  
+      <%= link_to "Nueva Categoría", new_category_url %><br> 
+      <ul class="list-group" id="menu-prin">
+        
+        <% i = 4 %>
+        <% @categories.each do |categoria| %>
+          <div class="badge badge-primary, text-secondary">          
+            <li class="ret<%= i+=1 %> list-group-item animated fadeInLeft">
+                <%= link_to categoria.name.upcase, categoria %>
+                <%= categoria.articles.count %>
+            </li>
+          </div>
+          <div class="mb-1">
+          </div>    
+        <% end %>
+      </ul>
+    </div>  
+    <div class="col-9">    
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Text</th>
+            <th>Usuario</th>
+            <th>Likes</th>
+            <th>Categoría</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>  
+          <% @articles.each do |article| %>
+            <tr>
+              <td><%= (article.title).capitalize %></td>
+              <td><%= article.text %></td>
+              <td><%= article.user.name_or_email %></td>
+              <td><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes' %></td>
+              <td>
+                  <ul>
+                    <%article.categories.each do |category|%>
+                      <li><%= category.name %></li>
+                    <%end%>
+                  </ul>
+              </td>
+              <td>  
+                <%= link_to 'Ver', article_path(article) %>  
+               
+              </td>
+              <td>
+                <% if signed_in? && current_user == article.user %>       
+                  <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                              <%= link_to 'Editar', edit_article_path(article), class: "dropdown-item" %>
+                              <%= link_to 'Eliminar', article_path(article),
+                                    method: :delete,
+                                    data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>      
+                        </div>           
+                      </button>  
+                  </div>
+                <% end %>   
+              </td> 
+            </tr>  
+          <% end %>
+        </tbody>    
+      </table> <br>
+    </div>
+  </div>      
+  <%= link_to 'INICIO', welcome_index_path %>
+</div>
 
-<h1>Artículos</h1>
-<% if signed_in? %>
- <%= link_to 'Mi Perfil', controller: 'profile' %>
-<% end %> <br> 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Text</th>
-    <th>Usuario</th>
-    <th>Likes</th>
-    <th colspan="3"></th>
-  </tr>
-  <% @articles.each do |article| %>
-    <tr>
-      <td><%= article.title %></td>
-      <td><%= article.text %></td>
-      <td><%= article.user.name_or_email %></td>
-      <td><%= article.likes.count %> <%= (article.likes.count) == 1 ? 'Like' : 'Likes' %></td>
-      <td><%= link_to 'Show', article_path(article) %></td>
-      <% if signed_in? && current_user == article.user %> 
-          <td><%= link_to 'Edit', edit_article_path(article) %></td>
-          <td><%= link_to 'Destroy', article_path(article),
-                  method: :delete,
-                  data: { confirm: 'Are you sure?' } %></td>
-      <% end %>         
-    </tr> 
-  <% end %>  
-</table> <br> 
-<%= link_to 'INICIO', welcome_index_path %>

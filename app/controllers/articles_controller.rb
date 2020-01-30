@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :authorize_action, only: [:edit]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_category, only: [:new, :edit, :index]
 
   def index
     @articles = Article.all.order(created_at: :desc)
@@ -18,6 +19,7 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(article_params)
+   
     if @article.save
         redirect_to @article
     else
@@ -42,7 +44,7 @@ class ArticlesController < ApplicationController
   private
 
     def article_params
-      params.require(:article).permit(:title, :text).merge(user_id: current_user.id)
+      params.require(:article).permit(:title, :text, category_ids: []).merge(user_id: current_user.id)
     end
 
     def authorize_action
@@ -55,6 +57,14 @@ class ArticlesController < ApplicationController
     def set_article 
       @article = Article.find(params[:id])
     end
+
+    def category_params
+      params.require(:category).permit(:name)
+    end
+
+    def set_category
+      @categories = Category.all
+    end  
 end
 
 

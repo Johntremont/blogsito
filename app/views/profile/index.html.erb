@@ -17,11 +17,11 @@
         <td><%= article.text %></td>
         <td><%= (article.user.name.present? && article.user.last_name.present? ? "#{article.user.name} #{article.user.last_name}" : article.user.email).capitalize %></td>
         <td><%= l article.created_at, format: :euro  %></td>
-        <td><%= link_to 'Show', article_path(article) %></td>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article_path(article),
+        <td><%= link_to 'Ver', article_path(article) %></td>
+        <td><%= link_to 'Editar', edit_article_path(article) %></td>
+        <td><%= link_to 'Eliminar', article_path(article),
                   method: :delete,
-                  data: { confirm: 'Are you sure?' } %></td>
+                  data: { confirm: 'Estas seguro?' } %></td>
       <% end %>         
     </tr> 
   <% end %>  

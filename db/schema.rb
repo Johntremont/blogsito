@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_06_143425) do
+ActiveRecord::Schema.define(version: 2020_01_30_203538) do
 
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
@@ -49,11 +49,26 @@ ActiveRecord::Schema.define(version: 2020_01_06_143425) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.integer "comment_id"
     t.integer "like_id"
-    t.index ["comment_id"], name: "index_articles_on_comment_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["like_id"], name: "index_articles_on_like_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "articles_categories", force: :cascade do |t|
+    t.integer "article_id"
+    t.integer "category_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["article_id"], name: "index_articles_categories_on_article_id"
+    t.index ["category_id"], name: "index_articles_categories_on_category_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -70,9 +85,9 @@ ActiveRecord::Schema.define(version: 2020_01_06_143425) do
   create_table "likes", force: :cascade do |t|
     t.integer "comment_id"
     t.integer "article_id", null: false
-    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
     t.index ["article_id"], name: "index_likes_on_article_id"
     t.index ["comment_id"], name: "index_likes_on_comment_id"
     t.index ["user_id"], name: "index_likes_on_user_id"
@@ -109,20 +124,18 @@ ActiveRecord::Schema.define(version: 2020_01_06_143425) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "comment_id"
     t.string "name"
     t.string "last_name"
     t.datetime "date_of_birth"
     t.boolean "is_female", default: false
     t.integer "Profile_id"
     t.index ["Profile_id"], name: "index_users_on_Profile_id"
-    t.index ["comment_id"], name: "index_users_on_comment_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "articles", "comments"
+  add_foreign_key "articles", "categories"
   add_foreign_key "articles", "likes"
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "articles"
@@ -134,5 +147,4 @@ ActiveRecord::Schema.define(version: 2020_01_06_143425) do
   add_foreign_key "profiles", "Comments"
   add_foreign_key "profiles", "Users"
   add_foreign_key "users", "Profiles"
-  add_foreign_key "users", "comments"
 end
