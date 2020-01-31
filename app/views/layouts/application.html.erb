@@ -9,12 +9,24 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'bootstrap' %>
+
+    <link href="fontawesome.css" rel="stylesheet">
+    <link href="brands.css" rel="stylesheet">
+    <link href="solid.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body style="background-color: #a6b8e7">
+    <!-- Image and text -->
+    <nav class="navbar navbar-light" style="background-color: #6689e7;">
+      <a class="navbar-brand" href="#">
+        <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        Blogsito
+      </a>
+    </nav>
  
       <%=render "layouts/messages" %>
      
     <%= yield %>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>  
   </body>
 </html>

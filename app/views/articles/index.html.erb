@@ -1,11 +1,14 @@
 <div class="container">
-  <h1>Artículos</h1>
+  <div class="display-4">
+    <ion-icon name="home"></ion-icon> 
+  </div>  
   <% if signed_in? %>
-  <%= link_to 'Mi Perfil', controller: 'profile' %>
+  <%= link_to 'Mi Perfil', profile_index_path, class:"btn btn-secondary rounded mb-1" %>
   <% end %> <br> 
   <div class="row justify-content-between">
     <div class="col-3">  
-      <%= link_to "Nueva Categoría", new_category_url %><br> 
+      <%= link_to "Nueva Categoría", new_category_url, class:"btn btn-secondary mb-1" %>
+      <br> 
       <ul class="list-group" id="menu-prin">
         
         <% i = 4 %>
@@ -22,7 +25,7 @@
       </ul>
     </div>  
     <div class="col-9">    
-      <table class="table table-hover">
+      <table class="table table-hover ">
         <thead>
           <tr>
             <th>Title</th>
@@ -45,29 +48,35 @@
                   <ul>
                     <%article.categories.each do |category|%>
                       <li><%= category.name %></li>
+                      <hr>
                     <%end%>
                   </ul>
               </td>
-              <td>  
-                <%= link_to 'Ver', article_path(article) %>  
-               
-              </td>
+
               <td>
-                <% if signed_in? && current_user == article.user %>       
-                  <div class="dropdown">
-                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                              <%= link_to 'Editar', edit_article_path(article), class: "dropdown-item" %>
-                              <%= link_to 'Eliminar', article_path(article),
-                                    method: :delete,
-                                    data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>      
-                        </div>           
-                      </button>  
+                  <!-- Example split danger button -->
+                  <div class="btn-group">
+                  <%= link_to 'Ver', article_path(article), class:"btn btn-secondary" %>
+                <% if signed_in? && current_user == article.user %>    
+                    <button type="button" class="btn btn-primary rounded dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <ion-icon name="settings" class="pt-2"></ion-icon>              
+                    </button>
+                      
+                    <div class="dropdown-menu">
+                      <%= link_to 'Editar', edit_article_path(article), class: "dropdown-item" %>
+                      
+                      <%= link_to 'Eliminar', article_path(article),
+                                method: :delete,
+                                data: { confirm: 'Are you sure?' }, class: "dropdown-item" %>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Separated link</a>
+                    </div>
                   </div>
                 <% end %>   
               </td> 
-            </tr>  
+            </tr>
           <% end %>
         </tbody>    
       </table> <br>
